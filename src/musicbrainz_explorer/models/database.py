@@ -1,6 +1,6 @@
 """SQLAlchemy database models."""
 from sqlalchemy import Column, String, Integer, Text, DateTime, Boolean, ForeignKey, Table
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import uuid
