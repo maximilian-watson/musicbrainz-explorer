@@ -21,7 +21,10 @@ class MusicBrainzClient:
             time.sleep(1.0)
             
             url = f"{self.base_url}/artist/{mbid}"
-            params = {'fmt': 'json'}
+            params = {
+                'fmt': 'json',
+                'inc': 'tags'  
+            }
             
             response = requests.get(
                 url, 
@@ -40,10 +43,14 @@ class MusicBrainzClient:
     
     def _parse_artist(self, data: dict) -> Artist:
         """Parse API response into Artist domain model."""
+        tags = []
+        if 'tags' in data:
+            tags = [tag['name'] for tag in data['tags'] if 'name' in tag]
+        
         return Artist(
             mbid=data['id'],
             name=data['name'],
             country=data.get('country'),
             type=data.get('type'),
-            tags=[]  # We'll add tags later
+            tags=tags 
         )

@@ -5,7 +5,7 @@ import logging
 from ..database.repositories import ArtistRepository
 from ..models.domain import Artist
 from ..api.client import MusicBrainzClient
-from config.database import db_manager
+from ..database.manager import db_manager
 
 class ArtistService:
     """Service for artist-related business logic."""

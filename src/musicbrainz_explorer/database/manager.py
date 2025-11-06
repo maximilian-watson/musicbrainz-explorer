@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 import os
-from src.musicbrainz_explorer.models.database import Base
+from ..models.database import Base
 
 class DatabaseManager:
     """Manage database connections and sessions."""
