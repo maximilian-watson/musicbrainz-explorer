@@ -18,9 +18,10 @@ class ArtistRepository:
     
     def create(self, artist: Artist) -> ArtistDB:
         """Create a new artist from domain model."""
-        # Check if artist already exists
+        # Check if artist already exists - use the session to ensure we get the same instance
         existing = self.get_by_mbid(artist.mbid)
         if existing:
+            # If it exists, return the existing instance
             return existing
         
         # Create database artist
@@ -39,6 +40,8 @@ class ArtistRepository:
             db_artist.tags.append(tag)
         
         self.session.add(db_artist)
+        # Flush to get the ID and ensure it's in the session
+        self.session.flush()
         return db_artist
     
     def list_artists(self, skip: int = 0, limit: int = 100) -> List[ArtistDB]:
