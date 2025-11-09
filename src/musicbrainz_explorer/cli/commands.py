@@ -86,6 +86,20 @@ def artists_by_country(country):
     else:
         click.echo(f"❌ No artists found from {country}")
 
+@cli.command()
+@click.confirmation_option(prompt='Are you sure you want to reset the database? This will delete all data!')
+def reset_db():
+    """Reset the database (delete all data)."""
+    from ..models.database import Base
+    
+    try:
+        # Drop all tables and recreate
+        Base.metadata.drop_all(bind=db_manager.engine)
+        Base.metadata.create_all(bind=db_manager.engine)
+        click.echo("✅ Database reset successfully!")
+    except Exception as e:
+        click.echo(f"❌ Error resetting database: {e}")
+
 def main():
     """Main entry point for CLI."""
     cli()
