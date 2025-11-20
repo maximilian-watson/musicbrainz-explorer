@@ -1,35 +1,49 @@
-# musicbrainz-explorer
+# Musicbrainz Explorer
 
-A python toolkit for music and data analysis.
+A Python toolkit for music and data analysis.
 
 ## Installation
 
+```bash
 git clone https://github.com/maximilian-watson/musicbrainz-explorer.git
 cd musicbrainz-explorer
 poetry install
+```
 
 ## Usage
 
-# Get artist info and save to database
+### Get artist info and save to the database
 
+```bash
 poetry run mbz get-artist "artist-mbid" --save
+```
 
-# List all artists in your collection
+### List all artists in your collection
 
+```bash
 poetry run mbz list-artists
+```
 
-# See most popular tags
+### See most popular tags
 
+```bash
 poetry run mbz popular-tags
+```
 
-# Find artists by country
+### Find artists by country
 
+```bash
 poetry run mbz artists-by-country "GB"
+```
 
-# Reset database (deletes all data)
+### Reset the database (deletes all data)
 
+```bash
 poetry run mbz reset-db
+```
 
-# Help
+## Help
 
+```bash
 poetry run mbz --help
+```
