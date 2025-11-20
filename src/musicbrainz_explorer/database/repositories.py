@@ -3,7 +3,7 @@ from typing import List, Optional, Dict, Any
 from sqlalchemy.orm import Session
 from sqlalchemy import desc, func
 
-from ..models.database import ArtistDB, TagDB
+from ..models.database import ArtistDB, TagDB, artist_tags
 from ..models.domain import Artist
 
 class ArtistRepository:
@@ -18,10 +18,9 @@ class ArtistRepository:
     
     def create(self, artist: Artist) -> ArtistDB:
         """Create a new artist from domain model."""
-        # Check if artist already exists - use the session to ensure we get the same instance
+        # Check if artist already exists
         existing = self.get_by_mbid(artist.mbid)
         if existing:
-            # If it exists, return the existing instance
             return existing
         
         # Create database artist
@@ -40,8 +39,6 @@ class ArtistRepository:
             db_artist.tags.append(tag)
         
         self.session.add(db_artist)
-        # Flush to get the ID and ensure it's in the session
-        self.session.flush()
         return db_artist
     
     def list_artists(self, skip: int = 0, limit: int = 100) -> List[ArtistDB]:
@@ -56,7 +53,11 @@ class ArtistRepository:
         """Get most popular tags across all artists."""
         result = self.session.query(
             TagDB.name, 
-            func.count(TagDB.name).label('count')
+            func.count(ArtistDB.mbid).label('count')  # Count artists per tag
+        ).join(
+            TagDB.artists  # Join through the many-to-many relationship
         ).group_by(TagDB.name).order_by(desc('count')).limit(limit).all()
         
         return [{"name": name, "count": count} for name, count in result]
+
+        
