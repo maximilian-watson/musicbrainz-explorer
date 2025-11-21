@@ -12,6 +12,19 @@ poetry install
 
 ## Usage
 
+Getting an MBID (MusicBrainz ID)
+
+To get the MBID for an artist, go to the MusicBrainz website https://musicbrainz.org and search for the artist. Open their page, then copy the final part of the URL.
+
+For example, from this URL:
+```bash
+https://musicbrainz.org/artist/2d2ca38f-a8f8-4744-973a-d25275e5d3db
+```
+You should copy only this part:
+```bash
+2d2ca38f-a8f8-4744-973a-d25275e5d3db
+```
+
 ### Get artist info and save to the database
 
 ```bash
