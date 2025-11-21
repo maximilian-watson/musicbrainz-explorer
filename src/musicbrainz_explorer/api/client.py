@@ -18,7 +18,7 @@ class MusicBrainzClient:
         """Get basic artist information."""
         try:
             # Rate limiting
-            time.sleep(1.0)
+            time.sleep(5.0)
             
             url = f"{self.base_url}/artist/{mbid}"
             params = {
