@@ -2,6 +2,15 @@
 
 A Python toolkit for music and data analysis.
 
+## Note: MusicBrainz API Limits
+
+MusicBrainz protects their API with aggressive rate limiting for unregistered applications:
+
+**What to expect:**
+- ✅ First request usually works
+- ❌ Subsequent requests may fail with SSL errors
+- ⏰ Waiting 5-10 minutes often resolves the block
+
 ## Installation
 
 ```bash
