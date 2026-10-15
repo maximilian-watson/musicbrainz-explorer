@@ -3,7 +3,7 @@ name = "musicbrainz-explorer"
 version = "0.1.0"
 description = "A Python toolkit for music and artist data analysis"
 authors = [
-    {name = "Your Name", email = "2.max.leo.watson@gmail.com"}
+    {name = "Max Watson", email = "2.max.leo.watson@gmail.com"}
 ]
 license = {text = "MIT"}
 readme = "README.md"

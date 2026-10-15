@@ -1,15 +1,21 @@
 # Musicbrainz Explorer
 
-A Python toolkit for music and data analysis.
-
-## Note: MusicBrainz API Limits
-
-MusicBrainz protects their API with aggressive rate limiting for unregistered applications:
+A Python command-line toolkit for retrieving, storing and analysing music artist data from the MusicBrainz API.
 
 **What to expect:**
+
 - ✅ First request usually works
 - ❌ Subsequent requests may fail with SSL errors
 - ⏰ Waiting 5-10 minutes often resolves the block
+
+## Features
+
+- Retrieve artist metadata from MusicBrainz
+- Save artist data to a local database
+- List stored artists
+- Analyse popular tags
+- Filter artists by country
+- Reset local data through the CLI
 
 ## Installation
 
@@ -19,6 +25,17 @@ cd musicbrainz-explorer
 poetry install
 ```
 
+### Requirements
+
+- Python 3.10+
+- Poetry
+
+### Testing
+
+```
+poetry run pytest
+```
+
 ## Usage
 
 Getting an MBID (MusicBrainz ID)
@@ -26,10 +43,13 @@ Getting an MBID (MusicBrainz ID)
 To get the MBID for an artist, go to the MusicBrainz website https://musicbrainz.org and search for the artist. Open their page, then copy the final part of the URL.
 
 For example, from this URL:
+
 ```bash
 https://musicbrainz.org/artist/2d2ca38f-a8f8-4744-973a-d25275e5d3db
 ```
+
 You should copy only this part:
+
 ```bash
 2d2ca38f-a8f8-4744-973a-d25275e5d3db
 ```
@@ -69,3 +89,7 @@ poetry run mbz reset-db
 ```bash
 poetry run mbz --help
 ```
+
+## Known Limitations
+
+MusicBrainz protects their API with aggressive rate limiting for unregistered applications:
