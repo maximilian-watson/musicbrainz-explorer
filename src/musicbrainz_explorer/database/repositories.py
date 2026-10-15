@@ -39,6 +39,7 @@ class ArtistRepository:
             db_artist.tags.append(tag)
         
         self.session.add(db_artist)
+        self.session.flush()
         return db_artist
     
     def list_artists(self, skip: int = 0, limit: int = 100) -> List[ArtistDB]:
